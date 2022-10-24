@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>API Autotests</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<style>
+		body{
+			background-image: url(images/background.png);
+			background-attachment: fixed;
+		}
+		header{
+			padding: 5em 5em 1em 5em;
+			text-align: justify;
+			display: block;
+		}
+		div{
+			background-color: white;
+			box-sizing: border-box;
+			vertical-align: baseline;
+			display: block;
+			
+		}
+
+		section{
+			background-color: white;
+			border-radius: 1.5em;
+			padding: 5em 5em 3em 5em;
+			border-top: 0;
+			display: block;
+			margin: 100px 100px 100px 100px;
+			box-sizing: inherit;
+			
+		}
+
+	</style>
+
+	<body>
+		<section id="main" style="size: 20%; position:absolute; width: 90%; margin-left: 5%; margin-top: 7%;
+		overflow: hidden; max-width: 200%;">
+			<h1>API Autotests 🌐 - REST-assured, JUnit5 </h1>
+			<br>
+			<h2>📃 Был составлен следующий чек-лист: </h2>
+								<p>1. Проверка статус-кода [GET] <br> 2. Создание нового пользователя [POST] <br> 3. Успешная регистрация [POST] <br> 4. Регистрация без пароля (запрет) [POST] <br> 5. Получение конкретного пользователя из списка по e-mail [GET] <br> 6. E-mail заканчивается на @reqres.in [GET] <br> 7. Изменение пользователя [PATCH] </p>
+								<h2>🔗 Maven-зависимости в проекте: </h2>
+								<p>Подключаю к проекту JUnit и REST-assured, для этого описываю dependencies<br><span class = image"><img src="images/i1.png" style="max-width: 100%"/></span></p>
+								
+								<h2>🗺️ Структура проекта:</h2>
+								<p>В проекте присутствуют 3 класса:<br> <span class = image"><img src="images/i2.png" style="max-width: 100%"/></span></p>
+								<p>1. <strong>ApiTests</strong> - главный тестовый класс, в котором реализованы все проверки. <br> 2. <strong>RequestBodies</strong> и <strong>UsersPojo</strong> - хелпер-классы, которые используются для вынесения в них объёмных частей кода (например передаваемых тел запросов).<br> В класс UsersPojo помещаются передаваемые в ответе данные для дальнейшей их сортировки через stream().filter().</p>
+								<h3>Немного слов про JUnit-аннотации:</h3>
+								<p>Перед объявлением класса используется аннотация <strong>@TestMethodOrder(MethodOrderer.DisplayName.class)</strong> для того, чтобы упорядочить выполнение тестов "один за другим".<br><span class = image"><img src="images/i3.png" style="max-width: 100%"/></span></p>
+								<p>Аннотация @Test проставляется перед каждым тестовым методом, а @DisplayName задаёт удобочитаемое название для методов в общем пулле тестов.</p>
+								<h2>Пример реализации проверки "Создание нового пользователя":</h2>
+								<p>В этом тесте мы будем использовать http-метод POST и передавать тело запроса. Предварительно это самое тело запроса я вынес в переменную типа String в класс RequestBodies, а в моём главном классе (ApiTests) я просто экстендю класс с телами запросов и использую созданную переменную.<br>
+									<span class = image"><img src="images/i4.png" style="max-width: 100%"/></span></p>
+								<p>👉🏼 Создаём объект response и помещаем в него наш ответ с помощью .extract().response() <br> После выполнения метода POST ответ от сервера хранится в нашем объекте response, который нам нужен для осуществления проверок.</p>
+								<p>Прописываем ассерты на соответствие значений в полях <strong>name</strong> и <strong>job</strong>:<br> <span class = image"><img src="images/i5.png" alt ="image" style="max-width: 100%"/></span></p>
+								
+								<h2>✅ Результаты проверок:<br><span class = image"><img src="images/i6.png" style="max-width: 100%"/></span></h2>
+								
+								<p>➡️ Ссылка на проект -  <a href= "https://github.com/neblessed/API-Tests-REST-assured">API Autotests GitHub</a></p>
+								<ul class="actions">
+									<li><a href="index.html" class="button">На главную</a></li>
+								</ul>
+							
+			
+		</section>
+
+	</body>
+
+
+	
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

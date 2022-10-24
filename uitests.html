@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>UI Autotests</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<style>
+		body{
+			background-image: url(images/background.png);
+			background-attachment: fixed;
+		}
+		header{
+			padding: 5em 5em 1em 5em;
+			text-align: justify;
+			display: block;
+		}
+		div{
+			background-color: white;
+			box-sizing: border-box;
+			vertical-align: baseline;
+			display: block;
+			
+		}
+
+		section{
+			background-color: white;
+			border-radius: 1.5em;
+			padding: 5em 5em 3em 5em;
+			border-top: 0;
+			display: block;
+			margin: 100px 100px 100px 100px;
+		}
+
+	</style>
+
+	<body>
+		<section id="main" style="size: 20%; position:absolute; width: 90%; margin-left: 5%; margin-top: 7%;
+		overflow: hidden; max-width: 200%;" >
+			<h1>UI Autotests 🏞️ - Selenide, JUnit5 </h1>
+			<br>
+			<h2>📃 Чек-лист для UI проверок следующий: </h2>
+								1. Наличие заголовка на главной странице; <br> 2. Соответствие цен на странице с курсами; <br> 3. Нажатие на кнопку "Купить" инициирует появление окна с формой оплаты; <br> 4. Авторизация; <br> 5. Открыть последний пост на странице "Джунгли"; <br> 6. Приступить к выполнению первого задания. <br> </p>
+								<h2>🔗 Gradle build: </h2>
+								<p>Подключаю к проекту JUnit и Selenide, в test добавляю JUnitPlatform.<br><span class = image><img src="images/a1.png" style="max-width: 100%"/></span></p>
+								<h2>🗺️ Структура проекта:</h2>
+								<p>При проектировании тестов, используя модель PageObject, классы проекта были разделены и распределены по соответстующим пакетам:<br><span class = image"><img src="images/a2.png" style="max-width: 100%"/></span></p>
+								<p>1. Пакет "config" - настройки Selenide (обязательно с использованием аннотации @BeforeAll, которые описывают BaseUrl, используемый браузер, размерность открываемого окна и видимость (браузер может запускаться в фоновом режиме).
+									<br><span class = image"><img src="images/a3.png" style="max-width: 100%"/></span></p>
+								<p>2. Пакет "pages" - используемые в тестировании страницы сайта, в page-классах описаны локаторы и методы, то есть всё необходимое для проектирования тестов.
+									<br><span class = image"><img src="images/a4.png" style="max-width: 100%"/></span>
+									<br><span class = image"><img src="images/a5.png" style="max-width: 100%"/></span>
+								</p>
+								<p>👇🏼 Вне пакетов имеется главный тестовый класс, в котором реализованы все проверки с использованием созданных экземпляров page-классов и описанной в них логики.
+									<br><span class = image"><img src="images/a6.png" alt ="image" style="max-width: 100%"/></span>
+								</p>
+								<h2>✅ Результаты проверок:
+									<br><span class = image"><img src="images/a7.png" style="max-width: 100%"/></span>
+								</h2>
+								
+								<p>➡️ Ссылка на проект -  <a href= "https://github.com/neblessed/AQA_Portfolio">UI Autotests GitHub</a></p>
+								<ul class="actions">
+									<li><a href="index.html" class="button">На главную</a></li>
+								</ul>
+			
+		</section>
+
+	</body>
+
+
+	
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
