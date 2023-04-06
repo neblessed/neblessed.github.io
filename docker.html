@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Docker 📦</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<style>
+		body{
+			background-image: url(images/background.png);
+			background-attachment: fixed;
+		}
+		header{
+			padding: 5em 5em 1em 5em;
+			text-align: justify;
+			display: block;
+		}
+		div{
+			background-color: white;
+			box-sizing: border-box;
+			vertical-align: baseline;
+			display: block;
+			
+		}
+
+		section{
+			background-color: white;
+			border-radius: 1.5em;
+			padding: 5em 5em 3em 5em;
+			border-top: 0;
+			display: block;
+			margin: 100px 100px 100px 100px;
+			box-sizing: inherit;
+			
+		}
+
+	</style>
+
+	<body>
+		<section id="main" style="size: 20%; position:absolute; width: 90%; margin-left: 5%; margin-top: 7%;
+		overflow: hidden; max-width: 200%;">
+			<h1>Docker образ. Docker контейнер. </h1>
+			<h3>🎯 Цель: Запустить Postman-коллекцию в Jenkins Pipeline</h3>
+                    <p><strong>📃 Порядок команд и действий:</strong><br>
+						1. Создать папку, в ней Dockerfile без расширения. <br>
+						2. Открыть Dockerfile в текстовом редакторе. <br>
+						3. Тут прописывает набор команд, которые в последствии выполняются автоматически при сборке образа: <br>
+						<strong>FROM jenkins/jenkins<br>
+						USER root<br>
+						RUN curl -sL https://deb.nodesource.com/setup_16.x | bash<br>
+						RUN apt-get -y install nodejs<br>
+						RUN npm install -g newman<br>
+						RUN apt-get install python3-pip -y<br>
+						RUN pip3 install jenkins-job-builder<br>
+						RUN apt-get -y install vim<br>
+						USER jenkins<br></strong>
+						<br>
+						На данном примере я указываю, что мне нужен jenkins, newman и nodeJS.
+                    </p>
+               <h3>🖥 Работа с консолью: </h3>
+               <p>На данном этапе нужно инициировать сборку образа и запуск этих команд. <br>
+				Для начала запускаю консоль и <strong>CD в директорию с Dockerfile</strong>, а там:<br>
+				<strong>docker build -t имяОбраза .</strong> (обращаю внимание на знак .(точки), это важно). <br>
+				<span><img src="images/docker/d1.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+				<br>
+				После окончания загрузки можем проверить существующие образы командой <strong>docker images</strong><br>
+				И видим, что наш образ создан и числится в списке.<br>
+				<span><img src="images/docker/d2.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+				<br>
+				Заключающий шаг в работе с докером - запускаем и присваиваем порт:<br>
+				<strong>docker run -d -p 8080:8080 имяОбраза</strong><br>
+				<span><img src="images/docker/d3.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+				<br>
+				Ошибок нет, контейнер работает. Можно открыть Docker Desktop и проверить это:<br>
+				<span><img src="images/docker/d4.png" style="text-align: left; max-width: 100%;"/></span><br>
+			</p>
+
+			<h3>🌐 Прыгаем на localhost:8080:</h3>
+			<p>Нас встречает jenkins, который просит ввести пароль, найти его можно в файлах контейнера, использовав команду <strong>cat путьКоторыйУказываетДженкинс</strong><br>
+			<span><img src="images/docker/d5.jpg" style="text-align: left; max-width: 30%;"/></span><br>
+			<br>
+			Эта команда прочитает файл по пути и вернёт значение, некий ключ. Его копируем и вставляем в поле. <br>
+			Далее загружаемся используя рекомендованный стаф, предлагаемый jenkins.
+			</p>
+			<h3>⛓ Настройка Pipline:</h3>
+			<p>Для моих задач ничего грандиозного, просто запущу с репозитория postman-коллекцию.<br>
+			Но для начала нужно создать Pipeline (смотри скрины далее).<br>
+			<span><img src="images/docker/d6.jpg" style="text-align: left; max-width: 50%;"/></span><br>
+			<h4>Настройки для Pipeline:</h4>
+			<span><img src="images/docker/d7.png" style="text-align: left; max-width: 100%;"/></span><br>
+			<span><img src="images/docker/d8.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+			Здесь я указываю триггер - sheduler. То есть запуск тестов в определенный период времени. Используется только для примера:<br>
+			<span><img src="images/docker/d9.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+			Поэтому вот дополнительная информация по формату записи и обозначениям:<br>
+			<span><img src="images/docker/d10.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+			<h4>Ну и самое главное, настройка скрипта:</h4><br>
+			<span><img src="images/docker/d11.png" style="text-align: left; max-width: 100%;"/></span><br>
+			Теперь остаётся лишь сохранить и нажать на кнопку "Собрать сейчас".<br>
+			Собралось успешно.</p>
+			<h3>Итоги отработки Pipline:</h3>
+			В консоли отображаются результаты тестов, а так же выводятся тесты, которые упали и причину падения. <br>
+			Задача выполнена, можно идти пить чай с печеньками.<br>
+			<span><img src="images/docker/d11.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+			
+		</p>
+			
+			
+			<ul class="actions">
+				<li><a href="index.html" class="button">На главную</a></li>
+			</ul>
+		</section>
+
+	</body>
+
+
+	
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
