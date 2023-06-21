@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Spring Project 🍃</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<style>
+		body{
+			background-image: url(images/background.png);
+			background-attachment: fixed;
+		}
+		header{
+			padding: 5em 5em 1em 5em;
+			text-align: justify;
+			display: block;
+		}
+		div{
+			background-color: white;
+			box-sizing: border-box;
+			vertical-align: baseline;
+			display: block;
+			
+		}
+
+		section{
+			background-color: white;
+			border-radius: 1.5em;
+			padding: 5em 5em 3em 5em;
+			border-top: 0;
+			display: block;
+			margin: 100px 100px 100px 100px;
+			box-sizing: inherit;
+			
+		}
+
+	</style>
+
+	<body>
+		<section id="main" style="size: 20%; position:absolute; width: 90%; margin-left: 5%; margin-top: 7%;
+		overflow: hidden; max-width: 200%;">
+			<h1>🍃 RESTful Service на Spring 🍃</h1>
+			<h3>🎯 Цель: Создать RESTful сервис, организовать CRUD взаимодействие.<br>
+			💿 Проект доступен по ссылке: <a href= "https://github.com/neblessed/Hitman_RESTful_Service">RESTful Service Spring</a>.</h3>
+                    
+				<h4>🌳 Структура базы данных:</h4>
+					<p>
+						<span><img src="images/spring/s1.png" style="text-align: left; max-width: 100%;"/></span><br>
+                    </p>
+
+				<h4>📃 Структура проекта: </h4>	
+					<p>
+						<span><img src="images/spring/s2.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+
+						<strong>• Package "Controller"</strong> - хранит в себе 2 класса-контроллера. Классы-контроллеры реализуют всю логику CRUD-взаимодействия с сервисом <br>
+						<strong>• Package "Model"</strong> - хранит в себе 2 класса-модели. Если сказать просто, то эти классы-модели равны по полям своей таблице в БД (Humans.class = "humans", Weapon.class = "weapons")
+						<br>
+						<strong>• Package "Repository"</strong> - хранит в себе 2 интерфейса, которые наследуются от интерфейса JpaRepository. Важный момент на скрине:
+						<br>
+						<span><img src="images/spring/s3.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+						Расширяемый интерфейс JpaRepository принимает 2 дженерика, которые нужно указать так же, как на скриншоте.<br>
+						<strong>• Package "Services"</strong> - хранит в себе 2 интерфейса и 2 классах-имплементатора. В интерфейсах описаны методы, а в классах эти методы реализуются.<br>
+					</p>
+				
+				<h4>👍 Подключение базы данных к проекту: </h4>
+					<p>
+						Для быстрого подключения базы данных (Таблицы ранее созданы через MySQL Workbench) я использовал плагин <strong>Data base Tool Windows</strong>
+						<br>
+						<span><img src="images/spring/s4.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+						1. Host - это названия хоста на котором создана БД через MySQL Workbench<br>
+						2. User/Password - это креды, которые используются для подключения к хосту (пункт 1)<br>
+						3. Database - название БД, которая создана на хосте<br>
+						4. URL - ссылка на БД, её так же можно найти через MySQL Workbench<br>
+					</p>
+
+					<p>
+						Так же необходимо в проекте открыть файл <strong>application.properties</strong> который находится по пути <strong>/src/main/resources/application.properties</strong><br>
+						<span><img src="images/spring/s5.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+						То же самое, только текстом:<br>
+						<code>server.port=5000</code><br>
+						<code>spring.datasource.url=jdbc:mysql://localhost:3306/continental?useSSL=false&serverTimezone=Europe/Moscow</code><br>
+						<code>spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code><br>
+						<code>spring.datasource.username=root</code><br>
+						<code>spring.datasource.password=admin</code><br>
+						</code>
+						Наш сервис будет располагаться на <strong>localhost:5000</strong>
+					</p>
+				
+				<h4>🧨 Создание модели БД в классах:</h4>
+					<p>
+						Продемонстрирую на примере класса /model/Hitman.class:<br>
+						<span><img src="images/spring/s6.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+						Аннотация @Data - это тема библиотеки Lombok. Благодаря @Data мне не нужно создавать в классе геттеры, сеттеры и конструкторы.<br>
+						- @Entity - это что-то типо указания сущности, а @Table - это привязка класса-модели к реальной таблице в БД (в данном случае "hitmans")<br>
+						- Далее идёт интересные аннотации @Id и @GeneratedValue. Тут объявляется поле класса и говорится, что это самосоздаваемый id (по-другому сказать AUTOINCREMENT в БД)<br>
+						- Далее над каждым полем класса висит аннотация @Column с параметром name. Так вот этот name - это название колонки в таблице hitmans. <br>
+						Аннотация @Column используется в тех случаях, когда поля класса у Вас названы иначе, чем в таблице. Это важно.
+					</p>	
+
+				<h4>🏹 Порядок создания классов и интерфейсов: </h4>
+				<p>
+					Конкретно в моей реализации всё создавалось вот в таком порядке:<br>
+					1. Создание БД и таблиц<br>
+					2. Установка коннекта к проекту + application.properties<br>
+					3. Создание классов-моделей в пакете <strong>models</strong><br>
+					4. Создание репозиторных классов в пакете <strong>repository</strong><br>
+					5. Создание сервисных классов в пакете <strong>service</strong>(Примечание: Сервисный класс обязательно помечается аннотацией @Service над объявлением класса)<br>
+					6. Создание классов-контроллеров в пакете <strong>controller</strong><br>
+					Вот небольшой пример. Класс-контроллер содержит в себе всю логику:<br>
+					<span><img src="images/spring/s7.jpg" style="text-align: left; max-width: 100%;"/></span><br>
+					Про аннотации лучше быстренько почитать статейки, а то этот пост растянется и будет не очень удобным. В целом - достаточно просто повторить подменив нейминг и всё заработает.<br>
+					<br>
+					На моменте завершения создания класса-контроллера я предлагаю закончить моё повествование. Надеюсь эта статья послужит для Вас маленькой шпаргалкой. <br>
+					Спасибо за внимание!<br>
+				</p>
+
+			<ul class="actions">
+				<li><a href="index.html" class="button">На главную</a></li>
+			</ul>
+		</section>
+
+	</body>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
